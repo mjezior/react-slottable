@@ -1,0 +1,82 @@
+{
+  "name": "react-slottable",
+  "version": "1.0.0",
+  "description": "Package that allows to turn react components into slottable ones",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "types",
+  "files": [
+    "dist",
+    "examples",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "yarn test",
+    "lint": "yarn lint:tsc && yarn lint:eslint",
+    "lint:all": "yarn lint --max-warnings 0 && yarn lint:audit",
+    "lint:tsc": "tsc",
+    "lint:eslint": "eslint --ignore-path .gitignore ./src --ext .js,.jsx,.ts,.tsx",
+    "lint:audit": "yarn audit-ci --package-manager yarn --report-type summary",
+    "lint:fix": "yarn lint --fix",
+    "postinstall": "husky install",
+    "version": "yarn lint:all && standard-changelog && git add .",
+    "postversion": "git push && git push --tags"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/config-conventional": "^17.2.0",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "@vitejs/plugin-react": "^2.2.0",
+    "audit-ci": "^6.3.0",
+    "commitlint": "^17.2.0",
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-compat": "^4.0.2",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "standard-changelog": "^2.0.27",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.0.22",
+    "@types/react-dom": "^18.0.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix --max-warnings 0",
+    "**/*.ts?(x)": "bash -c tsc",
+    "**/*.spec.ts?(x)": "yarn test",
+    "*.{json,md,yml}": "prettier --write"
+  },
+  "keywords": [
+    "react",
+    "vue",
+    "vuejs",
+    "slot",
+    "slots",
+    "slottable",
+    "template",
+    "content distribution"
+  ],
+  "author": "mateusz.jeziorek@o2.pl",
+  "license": "ISC"
+}
