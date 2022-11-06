@@ -21,7 +21,6 @@
     "lint:eslint": "eslint --ignore-path .gitignore ./src --ext .js,.jsx,.ts,.tsx",
     "lint:audit": "yarn audit-ci --package-manager yarn --report-type summary",
     "lint:fix": "yarn lint --fix",
-    "postinstall": "husky install",
     "version": "yarn lint:all && standard-changelog && git add .",
     "postversion": "git push && git push --tags"
   },
