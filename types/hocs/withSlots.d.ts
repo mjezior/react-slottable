@@ -6,7 +6,7 @@ export declare type StandardSlotsProps<S extends string> = Record<S, {
 }>;
 export declare type Slottable<Slots extends readonly string[], SlotsProps extends Partial<StandardSlotsProps<Slots[number]>> = StandardSlotsProps<Slots[number]>, ComponentProps extends object = object> = ComponentType<ComponentProps> & {
     /**
-     * Component attatched to your component after wrapping it with `withSlots`. Lets you to inject different content in place of related slot outlet.
+     * Component attatched to your component after wrapping it with `withSlots`. Lets you to distribute different content in place of related slot outlet.
      * @param {string} name slot outlet name to which you want to put content of `children` prop
      * @param {ReactNode} children content that slot outlet's default content will be replaced to
      */
