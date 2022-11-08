@@ -7,7 +7,7 @@ const slots = ['header', 'content', 'footer'] as const;
 
 type Slots = typeof slots[number];
 
-type SlotsProps = StandardSlotsProps<Slots> & {
+type SlotsProps = StandardSlotsProps<Slots, {
   header: {
     test1: string;
   };
@@ -17,7 +17,7 @@ type SlotsProps = StandardSlotsProps<Slots> & {
   footer: {
     test3: number;
   };
-};
+}>;
 
 type Props = {
   children: ReactNode;

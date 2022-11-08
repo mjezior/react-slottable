@@ -2,11 +2,15 @@ import { ComponentType, ReactNode } from 'react';
 
 import SlotProvider from 'providers/SlotProvider';
 import Slot from 'components/Slot';
-import pascalCase, { PascalCase } from 'utils/pascalCase';
+import upperFirst from 'utils/upperFirst';
 
 type SlotRenderProps<T> = Omit<T, 'children'>;
 
-export type StandardSlotsProps<S extends string> = Record<S, { children?: ReactNode }>;
+export type StandardSlotsProps<Slot extends string, AdditionalProps extends object = object> = Record<
+  Slot,
+  { children?: ReactNode }
+> &
+  AdditionalProps;
 
 export type Slottable<
   Slots extends readonly string[],
@@ -23,7 +27,7 @@ export type Slottable<
     children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
   }) => JSX.Element | null;
 } & {
-  [SlotName in Slots[number] as PascalCase<SlotName>]: (props: {
+  [SlotName in Slots[number] as Capitalize<SlotName>]: (props: {
     children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
   }) => JSX.Element | null;
 };
@@ -34,14 +38,16 @@ export type Slottable<
  * @param {ComponentType} Component - component that you want to enrich
  * @param {readonly string[]} slotNames - slot names that you want to use
  * @example
+ * import { withSlots, useSlots, SlotsProps as StandardSlotsProps } from 'react-slottable';
+ *
  * type Slots = ['header', 'content', 'footer'];
  * const slots: Slots = ['header', 'content', 'footer'];
  *
- * type SlotProps = {
+ * type SlotProps = StandardSlotsProps<Slots, {
  *   header: { test1: string; test2: boolean };
  *   content: { text: string };
  *   footer: { test3: number };
- * };
+ * }>;
  *
  * type Props = { loading: boolean; children: ReactNode };
  *
@@ -87,9 +93,9 @@ const withSlots = <
   Object.assign(EnchancedComponent, { Slot });
 
   slotNames.forEach((slotName) => {
-    const pascalCaseName = pascalCase(slotName);
+    const capitalizedName = upperFirst(slotName);
     Object.assign(EnchancedComponent, {
-      [pascalCaseName]: ({ children }: { children: ReactNode }) => <Slot name={slotName}>{children}</Slot>,
+      [capitalizedName]: ({ children }: { children: ReactNode }) => <Slot name={slotName}>{children}</Slot>,
     });
   });
 

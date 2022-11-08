@@ -1,9 +1,8 @@
 import { ComponentType, ReactNode } from 'react';
-import { PascalCase } from 'utils/pascalCase';
 declare type SlotRenderProps<T> = Omit<T, 'children'>;
-export declare type StandardSlotsProps<S extends string> = Record<S, {
+export declare type StandardSlotsProps<Slot extends string, AdditionalProps extends object = object> = Record<Slot, {
     children?: ReactNode;
-}>;
+}> & AdditionalProps;
 export declare type Slottable<Slots extends readonly string[], SlotsProps extends Partial<StandardSlotsProps<Slots[number]>> = StandardSlotsProps<Slots[number]>, ComponentProps extends object = object> = ComponentType<ComponentProps> & {
     /**
      * Component attatched to your component after wrapping it with `withSlots`. Lets you to distribute different content in place of related slot outlet.
@@ -15,7 +14,7 @@ export declare type Slottable<Slots extends readonly string[], SlotsProps extend
         children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
     }) => JSX.Element | null;
 } & {
-    [SlotName in Slots[number] as PascalCase<SlotName>]: (props: {
+    [SlotName in Slots[number] as Capitalize<SlotName>]: (props: {
         children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
     }) => JSX.Element | null;
 };
@@ -25,14 +24,16 @@ export declare type Slottable<Slots extends readonly string[], SlotsProps extend
  * @param {ComponentType} Component - component that you want to enrich
  * @param {readonly string[]} slotNames - slot names that you want to use
  * @example
+ * import { withSlots, useSlots, SlotsProps as StandardSlotsProps } from 'react-slottable';
+ *
  * type Slots = ['header', 'content', 'footer'];
  * const slots: Slots = ['header', 'content', 'footer'];
  *
- * type SlotProps = {
+ * type SlotProps = StandardSlotsProps<Slots, {
  *   header: { test1: string; test2: boolean };
  *   content: { text: string };
  *   footer: { test3: number };
- * };
+ * }>;
  *
  * type Props = { loading: boolean; children: ReactNode };
  *
@@ -61,5 +62,5 @@ export declare type Slottable<Slots extends readonly string[], SlotsProps extend
  *   <SlotsTest.Footer>footer override</SlotsTest.Footer>
  * </SlotsTest>
  */
-declare const withSlots: <Slot extends string, SlotsProps extends Partial<StandardSlotsProps<Slot>> = StandardSlotsProps<Slot[number]>, ComponentProps extends object = object>(Component: ComponentType<ComponentProps>, slotNames: readonly Slot[]) => Slottable<readonly Slot[], SlotsProps, ComponentProps>;
+declare const withSlots: <Slot extends string, SlotsProps extends Partial<StandardSlotsProps<Slot, object>> = StandardSlotsProps<Slot[number], object>, ComponentProps extends object = object>(Component: ComponentType<ComponentProps>, slotNames: readonly Slot[]) => Slottable<readonly Slot[], SlotsProps, ComponentProps>;
 export default withSlots;
