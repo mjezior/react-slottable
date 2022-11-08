@@ -1,6 +1,6 @@
 {
   "name": "react-slottable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Package that allows to turn react components into slottable ones",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

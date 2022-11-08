@@ -1,3 +1,12 @@
+## [1.0.2](https://github.com/mjezior/react-slottable/compare/v1.0.1...v1.0.2) (2022-11-08)
+
+
+### Bug Fixes
+
+* moved back to capitalized sub-components instead of pascal-cased ones, because of types errors ([80d4c8b](https://github.com/mjezior/react-slottable/commit/80d4c8bddefddbb11a23bee36b951636d6aa9b8e))
+
+
+
 ## 1.0.1 (2022-11-06)
 
 
