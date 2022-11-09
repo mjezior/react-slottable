@@ -7,17 +7,20 @@ const slots = ['header', 'content', 'footer'] as const;
 
 type Slots = typeof slots[number];
 
-type SlotsProps = StandardSlotsProps<Slots, {
-  header: {
-    test1: string;
-  };
-  content: {
-    test2: boolean;
-  };
-  footer: {
-    test3: number;
-  };
-}>;
+type SlotsProps = StandardSlotsProps<
+  Slots,
+  {
+    header: {
+      test1: string;
+    };
+    content: {
+      test2: boolean;
+    };
+    footer: {
+      test3: number;
+    };
+  }
+>;
 
 type Props = {
   children: ReactNode;
@@ -40,6 +43,7 @@ const FancyLayout = withSlots<Slots, SlotsProps, Props>(({ children }: Props) =>
 
 const App = (): JSX.Element => (
   <FancyLayout>
+    <FancyLayout.Slot name="header">{({ test1 }) => <div>{test1}</div>}</FancyLayout.Slot>
     <FancyLayout.Header>{({ test1 }) => <div>{test1}</div>}</FancyLayout.Header>
     <FancyLayout.Content>{({ test2 }) => (test2 ? 'loaded' : 'loading')}</FancyLayout.Content>
     <FancyLayout.Footer>{({ test3 }) => Math.random() * test3}</FancyLayout.Footer>

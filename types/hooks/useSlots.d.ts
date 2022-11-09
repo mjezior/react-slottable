@@ -1,9 +1,12 @@
-/// <reference types="react" />
-import { StandardSlotsProps } from 'hocs/withSlots';
+import { ReactNode } from 'react';
 /**
  * Hook that returns slot outlet components, basing on passed slot names array.
  * @param {readonly string[]} names array of slot names that you want to use within your main component
  * @returns {Record<Slot, ComponentType<SlotsProps[Slot]>>} object of components with dynamically generated names that are slot outlets to use in main component
  */
-declare const useSlots: <Slot extends string, SlotsProps extends Partial<StandardSlotsProps<Slot, object>> = StandardSlotsProps<Slot, object>>(names: readonly Slot[]) => { [SlotName in Slot as Capitalize<SlotName>]: (props: Exclude<SlotsProps[SlotName], undefined>) => JSX.Element | null; };
+declare const useSlots: <Slot extends string, SlotsProps extends Record<Slot, {
+    children?: ReactNode;
+}> = Record<Slot, {
+    children?: ReactNode;
+}>>(names: readonly Slot[]) => { [SlotName in keyof SlotsProps & string as Capitalize<(SlotName extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${any}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : SlotName) extends infer T_1 ? T_1 extends (SlotName extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${U extends `${infer T}-${infer U}` ? `${T}_${any}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : U}` : SlotName) ? T_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<U_1 extends `${infer T_2}_${infer U_1}` ? `${T_2}${Capitalize<any>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : U_1>}` : T_1 : never : never>]: (props: SlotsProps[SlotName]) => JSX.Element; };
 export default useSlots;

@@ -63,7 +63,7 @@ After wrapping your component with `withSlots`, it will be enriched with `<Slot>
 
 `<Slot>` component can receive only `name` and `children` props, both are required.
 
-For your convenience, `withSlots` dynamically generates additional sub-components with capitalized names, basing on passed slot names. Those components are just syntactic sugar on `<Slot>` (with pre-filled `name` prop), so these two syntaxes are equal:
+For your convenience, `withSlots` dynamically generates additional sub-components with pascal-case names, basing on passed slot names. Those components are just syntactic sugar on `<Slot>` (with pre-filled `name` prop), so these two syntaxes are equal:
 
 ```tsx
 <FancyLayout.Slot name="header">header</FancyLayout.Slot>

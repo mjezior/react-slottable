@@ -1,6 +1,6 @@
 import { memo, ReactNode, useContext, useEffect } from 'react';
 
-import { SlotContext } from 'providers/SlotProvider';
+import { SlotContext } from '../../providers/SlotProvider';
 
 /**
  * Component attatched to your component after wrapping it with `withSlots`. Lets you to distribute different content in place of related slot outlet.

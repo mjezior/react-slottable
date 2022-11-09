@@ -1,16 +1,15 @@
 import { ComponentType, ReactNode } from 'react';
 
-import SlotProvider from 'providers/SlotProvider';
-import Slot from 'components/Slot';
-import upperFirst from 'utils/upperFirst';
+import SlotProvider from '../providers/SlotProvider';
+import Slot from '../components/Slot';
+import pascalCase, { PascalCase } from '../utils/pascalCase';
 
 type SlotRenderProps<T> = Omit<T, 'children'>;
 
-export type StandardSlotsProps<Slot extends string, AdditionalProps extends object = object> = Record<
-  Slot,
-  { children?: ReactNode }
-> &
-  AdditionalProps;
+export type StandardSlotsProps<
+  Slot extends string,
+  AdditionalProps extends Partial<Record<Slot, unknown>> = object
+> = Record<Slot, { children?: ReactNode }> & AdditionalProps;
 
 export type Slottable<
   Slots extends readonly string[],
@@ -27,9 +26,9 @@ export type Slottable<
     children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
   }) => JSX.Element | null;
 } & {
-  [SlotName in Slots[number] as Capitalize<SlotName>]: (props: {
+  [SlotName in keyof SlotsProps & string as PascalCase<SlotName>]: (props: {
     children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
-  }) => JSX.Element | null;
+  }) => JSX.Element;
 };
 
 /**
@@ -78,7 +77,7 @@ export type Slottable<
  */
 const withSlots = <
   Slot extends string,
-  SlotsProps extends Partial<StandardSlotsProps<Slot>> = StandardSlotsProps<Slot[number]>,
+  SlotsProps extends Partial<StandardSlotsProps<Slot>> = StandardSlotsProps<Slot>,
   ComponentProps extends object = object
 >(
   Component: ComponentType<ComponentProps>,
@@ -93,9 +92,9 @@ const withSlots = <
   Object.assign(EnchancedComponent, { Slot });
 
   slotNames.forEach((slotName) => {
-    const capitalizedName = upperFirst(slotName);
+    const pascalCaseName = pascalCase(slotName);
     Object.assign(EnchancedComponent, {
-      [capitalizedName]: ({ children }: { children: ReactNode }) => <Slot name={slotName}>{children}</Slot>,
+      [pascalCaseName]: ({ children }: { children: ReactNode }) => <Slot name={slotName}>{children}</Slot>,
     });
   });
 

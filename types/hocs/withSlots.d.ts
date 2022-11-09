@@ -1,6 +1,7 @@
 import { ComponentType, ReactNode } from 'react';
+import { PascalCase } from '../utils/pascalCase';
 declare type SlotRenderProps<T> = Omit<T, 'children'>;
-export declare type StandardSlotsProps<Slot extends string, AdditionalProps extends object = object> = Record<Slot, {
+export declare type StandardSlotsProps<Slot extends string, AdditionalProps extends Partial<Record<Slot, unknown>> = object> = Record<Slot, {
     children?: ReactNode;
 }> & AdditionalProps;
 export declare type Slottable<Slots extends readonly string[], SlotsProps extends Partial<StandardSlotsProps<Slots[number]>> = StandardSlotsProps<Slots[number]>, ComponentProps extends object = object> = ComponentType<ComponentProps> & {
@@ -14,9 +15,9 @@ export declare type Slottable<Slots extends readonly string[], SlotsProps extend
         children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
     }) => JSX.Element | null;
 } & {
-    [SlotName in Slots[number] as Capitalize<SlotName>]: (props: {
+    [SlotName in keyof SlotsProps & string as PascalCase<SlotName>]: (props: {
         children: ReactNode | ((props: SlotRenderProps<SlotsProps[SlotName]>) => ReactNode);
-    }) => JSX.Element | null;
+    }) => JSX.Element;
 };
 /**
  * Higher-order component that lets you to turn your component into slottable one,
@@ -62,5 +63,5 @@ export declare type Slottable<Slots extends readonly string[], SlotsProps extend
  *   <SlotsTest.Footer>footer override</SlotsTest.Footer>
  * </SlotsTest>
  */
-declare const withSlots: <Slot extends string, SlotsProps extends Partial<StandardSlotsProps<Slot, object>> = StandardSlotsProps<Slot[number], object>, ComponentProps extends object = object>(Component: ComponentType<ComponentProps>, slotNames: readonly Slot[]) => Slottable<readonly Slot[], SlotsProps, ComponentProps>;
+declare const withSlots: <Slot extends string, SlotsProps extends Partial<StandardSlotsProps<Slot, object>> = StandardSlotsProps<Slot, object>, ComponentProps extends object = object>(Component: ComponentType<ComponentProps>, slotNames: readonly Slot[]) => Slottable<readonly Slot[], SlotsProps, ComponentProps>;
 export default withSlots;
