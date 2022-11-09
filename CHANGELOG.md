@@ -1,3 +1,12 @@
+## [1.0.3](https://github.com/mjezior/react-slottable/compare/v1.0.2...v1.0.3) (2022-11-09)
+
+
+### Bug Fixes
+
+* pascal-case sub-components' names work properly for now ([d22b358](https://github.com/mjezior/react-slottable/commit/d22b3580f21d670474fb9cfba9a42c264825daf9))
+
+
+
 ## [1.0.2](https://github.com/mjezior/react-slottable/compare/v1.0.1...v1.0.2) (2022-11-08)
 
 
