@@ -15,7 +15,7 @@ const useSlots = <
 >(
   names: readonly Slot[]
 ) => {
-  const { slots, getSlot } = useContext(SlotContext);
+  const { getSlot } = useContext(SlotContext);
   const [isLoaded, { on }] = useBoolean(false);
 
   useEffect(on, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -37,7 +37,7 @@ const useSlots = <
       }, {}) as {
         [SlotName in keyof SlotsProps & string as PascalCase<SlotName>]: (props: SlotsProps[SlotName]) => JSX.Element;
       },
-    [slots, isLoaded] // eslint-disable-line react-hooks/exhaustive-deps
+    [isLoaded] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return components;
