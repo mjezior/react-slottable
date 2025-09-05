@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/mjezior/react-slottable/compare/v1.0.3...v1.0.4) (2025-09-05)
+
+
+### Bug Fixes
+
+* corrected rerendering slots ([e42eb40](https://github.com/mjezior/react-slottable/commit/e42eb4005eb4a26e88663a301cf7469bea6a3085))
+
+
+
 ## [1.0.3](https://github.com/mjezior/react-slottable/compare/v1.0.2...v1.0.3) (2022-11-09)
 
 
