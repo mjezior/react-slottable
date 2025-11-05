@@ -1,4 +1,4 @@
-import { createContext, useRef, useState } from 'react';
+import { createContext, JSX, useRef, useState } from 'react';
 
 import { ContextValues, Props } from './SlotProvider.types';
 

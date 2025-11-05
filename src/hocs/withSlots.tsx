@@ -1,4 +1,4 @@
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, JSX, ReactNode } from 'react';
 
 import SlotProvider from '../providers/SlotProvider';
 import Slot from '../components/Slot';

@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useMemo } from 'react';
+import { JSX, ReactNode, useContext, useEffect, useMemo } from 'react';
 
 import { SlotContext } from '../providers/SlotProvider';
 import pascalCase, { PascalCase } from '../utils/pascalCase';

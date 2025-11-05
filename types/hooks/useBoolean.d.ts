@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-declare type UseBooleanReturnType = [
+type UseBooleanReturnType = [
     boolean,
     {
         setValue: Dispatch<SetStateAction<boolean>>;

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 /**
  * Hook that returns slot outlet components, basing on passed slot names array.
  * @param {readonly string[]} names array of slot names that you want to use within your main component

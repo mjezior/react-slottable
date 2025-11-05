@@ -1,4 +1,4 @@
-import { memo, ReactNode, useContext, useEffect } from 'react';
+import { JSX, memo, ReactNode, useContext, useEffect } from 'react';
 
 import { SlotContext } from '../../providers/SlotProvider';
 

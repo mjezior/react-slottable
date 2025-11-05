@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { JSX, ReactNode } from 'react';
 /**
  * Component attatched to your component after wrapping it with `withSlots`. Lets you to distribute different content in place of related slot outlet.
  * @param {string} name slot outlet name to which you want to put content of `children` prop

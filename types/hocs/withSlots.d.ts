@@ -1,10 +1,10 @@
-import { ComponentType, ReactNode } from 'react';
+import { ComponentType, JSX, ReactNode } from 'react';
 import { PascalCase } from '../utils/pascalCase';
-declare type SlotRenderProps<T> = Omit<T, 'children'>;
-export declare type StandardSlotsProps<Slot extends string, AdditionalProps extends Partial<Record<Slot, unknown>> = object> = Record<Slot, {
+type SlotRenderProps<T> = Omit<T, 'children'>;
+export type StandardSlotsProps<Slot extends string, AdditionalProps extends Partial<Record<Slot, unknown>> = object> = Record<Slot, {
     children?: ReactNode;
 }> & AdditionalProps;
-export declare type Slottable<Slots extends readonly string[], SlotsProps extends Partial<StandardSlotsProps<Slots[number]>> = StandardSlotsProps<Slots[number]>, ComponentProps extends object = object> = ComponentType<ComponentProps> & {
+export type Slottable<Slots extends readonly string[], SlotsProps extends Partial<StandardSlotsProps<Slots[number]>> = StandardSlotsProps<Slots[number]>, ComponentProps extends object = object> = ComponentType<ComponentProps> & {
     /**
      * Component attatched to your component after wrapping it with `withSlots`. Lets you to distribute different content in place of related slot outlet.
      * @param {string} name slot outlet name to which you want to put content of `children` prop
