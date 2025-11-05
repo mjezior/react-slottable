@@ -1,3 +1,12 @@
+## [1.1.1](https://github.com/mjezior/react-slottable/compare/v1.1.0...v1.1.1) (2025-11-05)
+
+
+### Bug Fixes
+
+* corrected support for react 19 ([fbc892d](https://github.com/mjezior/react-slottable/commit/fbc892d72fbff911ef793d0b850b65ba0296cea5))
+
+
+
 # [1.1.0](https://github.com/mjezior/react-slottable/compare/v1.0.5...v1.1.0) (2025-11-05)
 
 
