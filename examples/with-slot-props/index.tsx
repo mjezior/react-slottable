@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import ReactDOM from 'react-dom';
+import { ReactNode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 import { withSlots, useSlots, SlotsProps as StandardSlotsProps } from '../../src';
 
@@ -50,4 +50,10 @@ const App = (): JSX.Element => (
   </FancyLayout>
 );
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+const container = document.querySelector('#app');
+
+if (container) {
+  const root = createRoot(container);
+  
+  root.render(<App />);
+}
